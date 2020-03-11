@@ -95,15 +95,10 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.v("알림", "ONCOMPLETE");
 
                         if (!task.isSuccessful()) {
-                            Log.v("알림", "!task.isSuccessful()");
-                            Toast.makeText(Login.this, "인증에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                         }else {
-                            Log.v("알림", "task.isSuccessful()");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(Login.this, "FireBase 아이디 생성이 완료 되었습니다", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -111,7 +106,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
     @Override
     public void onConnectionFailed(@Nullable ConnectionResult connectionResult) {
-        Log.v("알림", "onConnectionFailed");
+
     }
 
 }

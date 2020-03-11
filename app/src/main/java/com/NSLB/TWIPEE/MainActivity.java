@@ -23,11 +23,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
     private Button logout;
     private Intent intent;
-
-    public FirebaseAuth mauth;
-    public GoogleApiClient mgoogleApiClient;
+    private FirebaseAuth mauth;
+    private GoogleApiClient mgoogleApiClient;
     public String[] mUserInfos;
     public ArrayList<String> mKeywordStrArray;
     SectionsPagerAdapter sectionsPagerAdapter = null;
@@ -48,6 +48,20 @@ public class MainActivity extends AppCompatActivity {
         mauth = ((Login)Login.mContext).mAuth;
         mgoogleApiClient = ((Login)Login.mContext).mGoogleApiClient;
 
+        initview();
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                signOut();
+                Intent intent2 = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent2);
+                finish();
+            }
+        });
+    }
+
+    private void initview(){
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -68,15 +82,6 @@ public class MainActivity extends AppCompatActivity {
             intent = null;
 
         }
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent2 = new Intent(getApplicationContext(), Login.class);
-                startActivity(intent2);
-                finish();
-            }
-        });
     }
 
     public void signOut() {
