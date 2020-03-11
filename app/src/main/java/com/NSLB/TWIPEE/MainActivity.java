@@ -1,5 +1,7 @@
 package com.NSLB.TWIPEE;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -7,9 +9,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.material.tabs.TabLayout;
 
 import com.NSLB.TWIPEE.Ui.main.SectionsPagerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -17,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private Button logout;
     private Intent intent;
 
+    public FirebaseAuth mauth;
+    public GoogleApiClient mgoogleApiClient;
     public String[] mUserInfos;
     public ArrayList<String> mKeywordStrArray;
     SectionsPagerAdapter sectionsPagerAdapter = null;
@@ -34,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         logout = (Button)findViewById(R.id.logout);
+        mauth = ((Login)Login.mContext).mAuth;
+        mgoogleApiClient = ((Login)Login.mContext).mGoogleApiClient;
 
         sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
@@ -61,6 +74,39 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent2 = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent2);
+                finish();
+            }
+        });
+    }
+
+    public void signOut() {
+
+        mgoogleApiClient.connect();
+        mgoogleApiClient.registerConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+
+            @Override
+            public void onConnected(@Nullable Bundle bundle) {
+
+                mauth.signOut();
+                if (mgoogleApiClient.isConnected()) {
+
+                    Auth.GoogleSignInApi.signOut(mgoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+
+                        @Override
+                        public void onResult(@NonNull Status status) {
+
+                            if (status.isSuccess()) {
+                                Toast.makeText(MainActivity.this, "로그아웃 성공.", Toast.LENGTH_SHORT).show();
+                            } else {
+
+                            }
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onConnectionSuspended(int i) {
                 finish();
             }
         });
