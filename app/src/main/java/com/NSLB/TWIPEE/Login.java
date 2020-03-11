@@ -1,5 +1,6 @@
 package com.NSLB.TWIPEE;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,10 +29,11 @@ import org.jetbrains.annotations.Nullable;
 
 public class Login extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    private FirebaseAuth mAuth;
-    private GoogleApiClient mGoogleApiClient;
+    public FirebaseAuth mAuth;
+    public GoogleApiClient mGoogleApiClient;
     private static final int RC_SIGN_IN = 9001;
     private SignInButton sign_in_button;
+    public static Context mContext;
 
     @Override
     public void onStart(){
@@ -44,6 +46,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        mContext = this;
 
         sign_in_button  = (SignInButton)findViewById(R.id.sign_in_button);
 
