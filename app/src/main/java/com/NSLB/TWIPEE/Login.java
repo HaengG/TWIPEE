@@ -34,7 +34,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private static final int RC_SIGN_IN = 9001;
     private SignInButton sign_in_button;
     public static Context mContext;
-
+    public FirebaseMethodUserSettings firebaseMethodUserSettings;
     @Override
     public void onStart(){
         super.onStart();
@@ -49,6 +49,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         mContext = this;
 
         sign_in_button  = (SignInButton)findViewById(R.id.sign_in_button);
+        firebaseMethodUserSettings= new FirebaseMethodUserSettings();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -75,10 +76,12 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
+            mGoogleApiClient.connect();
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 GoogleSignInAccount account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
+                firebaseMethodUserSettings.firebaseAuthWithGoogle(account, this);
+                //firebaseAuthWithGoogle(account);
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
