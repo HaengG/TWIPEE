@@ -26,10 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Button logout;
     private Intent intent;
-    private FirebaseAuth mauth;
-    private GoogleApiClient mgoogleApiClient;
     public String[] mUserInfos;
     public ArrayList<String> mKeywordStrArray;
+    public FirebaseMethodUserSettings firebaseMethodUserSettings;
     SectionsPagerAdapter sectionsPagerAdapter = null;
 
     private int[] tabIcons={
@@ -44,16 +43,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        firebaseMethodUserSettings= new FirebaseMethodUserSettings();
         logout = (Button)findViewById(R.id.logout);
-        mauth = ((Login)Login.mContext).mAuth;
-        mgoogleApiClient = ((Login)Login.mContext).mGoogleApiClient;
-
         initview();
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signOut();
+                //signOut();
+                firebaseMethodUserSettings.signOut();
                 Intent intent2 = new Intent(getApplicationContext(), Login.class);
                 startActivity(intent2);
                 finish();
@@ -82,38 +80,5 @@ public class MainActivity extends AppCompatActivity {
             intent = null;
 
         }
-    }
-
-    public void signOut() {
-
-        mgoogleApiClient.connect();
-        mgoogleApiClient.registerConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
-
-            @Override
-            public void onConnected(@Nullable Bundle bundle) {
-
-                mauth.signOut();
-                if (mgoogleApiClient.isConnected()) {
-
-                    Auth.GoogleSignInApi.signOut(mgoogleApiClient).setResultCallback(new ResultCallback<Status>() {
-
-                        @Override
-                        public void onResult(@NonNull Status status) {
-
-                            if (status.isSuccess()) {
-                                Toast.makeText(MainActivity.this, "로그아웃 성공.", Toast.LENGTH_SHORT).show();
-                            } else {
-
-                            }
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onConnectionSuspended(int i) {
-                finish();
-            }
-        });
     }
 }

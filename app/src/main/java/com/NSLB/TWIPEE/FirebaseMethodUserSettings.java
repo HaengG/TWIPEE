@@ -1,13 +1,19 @@
 package com.NSLB.TWIPEE;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.NSLB.TWIPEE.Interface.SignInListener;
 import com.NSLB.TWIPEE.ItemModel.UserInfoModel;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -24,6 +30,7 @@ public class FirebaseMethodUserSettings extends FirebaseMethods {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private SignInListener signInListener = null;
+    private GoogleApiClient mgoogleApiClient;
     boolean check = false;
 
 
@@ -58,6 +65,40 @@ public class FirebaseMethodUserSettings extends FirebaseMethods {
         });
     }
 
+    public void signOut() {
+        DatabaseAccess();
+        mgoogleApiClient = ((Login)Login.mContext).mGoogleApiClient;
+        mgoogleApiClient.connect();
+        mgoogleApiClient.registerConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+
+            @Override
+            public void onConnected(@Nullable Bundle bundle) {
+
+                mAuth.signOut();
+                if (mgoogleApiClient.isConnected()) {
+
+                    Auth.GoogleSignInApi.signOut(mgoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+
+                        @Override
+                        public void onResult(@NonNull Status status) {
+
+                            if (status.isSuccess()) {
+                                //Toast.makeText(MainActivity.this, "로그아웃 성공.", Toast.LENGTH_SHORT).show();
+                            } else {
+
+                            }
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onConnectionSuspended(int i) {
+                //finish();
+            }
+        });
+    }
+
     public void firebaseAuthWithGoogle(GoogleSignInAccount acct, Activity activity){
         DatabaseAccess();
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(),null);
@@ -78,11 +119,6 @@ public class FirebaseMethodUserSettings extends FirebaseMethods {
                 });
     }
 
-
-
-    public void signOut(){
-        FirebaseAuth.getInstance().signOut();
-    }
 
     public void signUp(String Email, String Password) {
         Log.d(TAG, "signUp");
