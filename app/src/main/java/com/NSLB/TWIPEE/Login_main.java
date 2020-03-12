@@ -27,7 +27,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import org.jetbrains.annotations.Nullable;
 
-public class Login extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
+public class Login_main extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     public FirebaseAuth mAuth;
     public GoogleApiClient mGoogleApiClient;
@@ -82,7 +82,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseMethodUserSettings.firebaseAuthWithGoogle(account, this);
                 //firebaseAuthWithGoogle(account);
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, Login_interest.class);
                 startActivity(intent);
                 finish();
             }

@@ -45,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         logout = (Button)findViewById(R.id.logout);
-        mauth = ((Login)Login.mContext).mAuth;
-        mgoogleApiClient = ((Login)Login.mContext).mGoogleApiClient;
+        mauth = ((Login_main) Login_main.mContext).mAuth;
+        mgoogleApiClient = ((Login_main) Login_main.mContext).mGoogleApiClient;
 
         initview();
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 signOut();
-                Intent intent2 = new Intent(getApplicationContext(), Login.class);
+                Intent intent2 = new Intent(getApplicationContext(), Login_main.class);
                 startActivity(intent2);
                 finish();
             }

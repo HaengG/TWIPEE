@@ -68,11 +68,11 @@ public class FirebaseMethodUserSettings extends FirebaseMethods {
                         Log.v("알림", "ONCOMPLETE");
                         if (!task.isSuccessful()) {
                             Log.v("알림", "!task.isSuccessful()");
-                            Toast.makeText(Login.mContext, "인증에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login_main.mContext, "인증에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                         }else {
                             Log.v("알림", "task.isSuccessful()");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(Login.mContext, "FireBase 아이디 생성이 완료 되었습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login_main.mContext, "FireBase 아이디 생성이 완료 되었습니다", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
