@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseMethodUserSettings= new FirebaseMethodUserSettings();
         logout = (Button)findViewById(R.id.logout);
+
         initview();
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //signOut();
                 firebaseMethodUserSettings.signOut();
-                Intent intent2 = new Intent(getApplicationContext(), Login.class);
+                Intent intent2 = new Intent(getApplicationContext(), Login_main.class);
                 startActivity(intent2);
                 finish();
             }
