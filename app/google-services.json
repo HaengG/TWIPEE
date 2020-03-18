@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "142544953113-m9tuq38l80e3imspbl10kj0givk24jir.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.NSLB.TWIPEE",
+            "certificate_hash": "170e853d19b12b91f6278887a82276c43eee6b62"
+          }
+        },
+        {
+          "client_id": "142544953113-9kqkrklpq3tap0on0no47jg1g1sk5pbb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.NSLB.TWIPEE",
+            "certificate_hash": "4fc1acc7e6095196cf469e6e3f436ebeac1a8c09"
+          }
+        },
+        {
           "client_id": "142544953113-trpe8bop5orbh20roq8kjiffurhm560i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
