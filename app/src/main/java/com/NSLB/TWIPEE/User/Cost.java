@@ -6,9 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.NSLB.TWIPEE.R;
 
 public class Cost extends AppCompatActivity implements View.OnClickListener {
@@ -53,6 +51,7 @@ public class Cost extends AppCompatActivity implements View.OnClickListener {
                 Intent intent=new Intent(getApplication(),PostReview.class);
                 intent.putExtra("total_fee",result);
                 startActivity(intent);
+                finish();
 
             default:
                 break;

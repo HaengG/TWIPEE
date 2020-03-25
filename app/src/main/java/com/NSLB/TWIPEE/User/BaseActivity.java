@@ -1,9 +1,10 @@
 package com.NSLB.TWIPEE.User;
 
+import android.app.Activity;
 import android.view.View;
 import android.widget.ProgressBar;
-
 import androidx.appcompat.app.AppCompatActivity;
+import java.util.ArrayList;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -24,4 +25,6 @@ public class BaseActivity extends AppCompatActivity {
             mProgressBar.setVisibility(View.INVISIBLE);
         }
     }
+
+    public static ArrayList<Activity> actList = new ArrayList<Activity>();
 }

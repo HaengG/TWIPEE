@@ -28,10 +28,12 @@ public class PostMain extends AppCompatActivity implements View.OnClickListener 
             case R.id.btn_ps_review://후기작성
                 Intent intent=new Intent(getApplicationContext(),PostReview.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.btn_ps_plan://계획작성
                 Intent intent1=new Intent(getApplicationContext(),PostPlan.class);
                 startActivity(intent1);
+                finish();
                 break;
             default:
                 break;

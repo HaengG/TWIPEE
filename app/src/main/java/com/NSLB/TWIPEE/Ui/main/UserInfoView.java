@@ -20,6 +20,8 @@ import com.NSLB.TWIPEE.User.Travel;
 import com.NSLB.TWIPEE.User.UserSetup;
 import com.google.android.material.tabs.TabLayout;
 
+import static com.NSLB.TWIPEE.User.BaseActivity.actList;
+
 public class UserInfoView extends Fragment implements View.OnClickListener{
 
     private Button ps_write,btn_follower,btn_following;
@@ -38,6 +40,8 @@ public class UserInfoView extends Fragment implements View.OnClickListener{
 
         View view= inflater.inflate(R.layout.fragment_user_view , container , false);
         TabLayout tabs=view.findViewById(R.id.tabs_userinfo);
+
+        actList.add(getActivity());
         //탭 아이콘
         tabs.addTab(tabs.newTab().setIcon(R.drawable.ic_apps_black_24dp));
         tabs.addTab(tabs.newTab().setIcon(R.drawable.ic_location_on2_black_24dp));

@@ -27,6 +27,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
+import static com.NSLB.TWIPEE.User.BaseActivity.actList;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button logout;
@@ -55,8 +57,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        actList.add(this);
+
         initview();
         firebaseMethodUserSettings= new FirebaseMethodUserSettings();
+        Toast.makeText(this,"성공",Toast.LENGTH_SHORT).show();
 
     }
 
@@ -150,17 +155,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            set_UI();
         }
     }
-
-
-    //로그아웃 기능
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //signOut();
-//                firebaseMethodUserSettings.signOut();
-//                Intent intent2 = new Intent(getApplicationContext(), Login_main.class);
-//                startActivity(intent2);
-//                finish();
-//            }
-//        });
 }

@@ -44,14 +44,12 @@ public class Login_interest extends AppCompatActivity {
             {
                 ToggleButton btn = (ToggleButton) findViewById(view.getId());
                 mKeywordStrArray.remove(btn.getText().toString());
-                Toast.makeText(this, "삭제", Toast.LENGTH_SHORT).show();
                 String s = mKeywordStrArray.toString();
                 selected.setText(s);
             }
             else {
                 ToggleButton btn = (ToggleButton) findViewById(view.getId());
                 mKeywordStrArray.add(btn.getText().toString());
-                Toast.makeText(this, "선택", Toast.LENGTH_SHORT).show();
                 String d = mKeywordStrArray.toString();
                 selected.setText(d);
             }
