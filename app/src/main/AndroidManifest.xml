@@ -43,7 +43,7 @@
         </activity>
 
         <activity
-            android:name=".Login_interest"
+            android:name=".Login_category"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
