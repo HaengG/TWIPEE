@@ -13,20 +13,19 @@ import java.util.ArrayList;
 
 public class Login_category extends AppCompatActivity implements View.OnClickListener {
 
-    private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = database.getReference();
     private ArrayList<String> category;
     private String [] mUserInfos;
     private ToggleButton btn;
     private TextView selected;
     private String show_category;
     private Button done;
+    public FirebaseMethodUserSettings firebaseMethodUserSettings;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_interast);
-
+        firebaseMethodUserSettings= new FirebaseMethodUserSettings();
         selected = (TextView)findViewById(R.id.selected);
         done = (Button)findViewById(R.id.done);
         done.setOnClickListener(this);
@@ -56,7 +55,8 @@ public class Login_category extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.done) {
-            databaseReference.child("category").push().setValue(show_category);
+            //databaseReference.child("category").push().setValue(show_category);
+            firebaseMethodUserSettings.categorysave(show_category);
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();

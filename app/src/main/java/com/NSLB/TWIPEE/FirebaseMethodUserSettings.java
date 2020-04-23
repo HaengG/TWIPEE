@@ -99,6 +99,11 @@ public class FirebaseMethodUserSettings extends FirebaseMethods {
         });
     }
 
+    public void categorysave(String show_category){
+        DatabaseAccess();
+        mDatabase.child(getUid()).child("category").setValue(show_category);
+    }
+
     public void firebaseAuthWithGoogle(GoogleSignInAccount acct, Activity activity){
         DatabaseAccess();
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(),null);
