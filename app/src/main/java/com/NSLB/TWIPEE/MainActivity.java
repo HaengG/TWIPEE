@@ -60,9 +60,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         actList.add(this);
 
         initview();
-        firebaseMethodUserSettings= new FirebaseMethodUserSettings();
+        //firebaseMethodUserSettings= new FirebaseMethodUserSettings();
         Toast.makeText(this,"성공",Toast.LENGTH_SHORT).show();
-
     }
 
     private void initview(){

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ToggleButton;
 
 import androidx.fragment.app.Fragment;
@@ -22,15 +23,18 @@ import com.google.android.material.tabs.TabLayout;
 
 import static com.NSLB.TWIPEE.User.BaseActivity.actList;
 
-public class UserInfoView extends Fragment implements View.OnClickListener{
+public class UserInfoView extends Fragment implements View.OnClickListener {
+
 
     private Button ps_write,btn_follower,btn_following;
+    private LinearLayout linearLayout;
     private ImageButton btn_setup,btn_travel;
     Intent MyStepService;
     private String tvStepDetector;
     private ToggleButton btn_toggle1;
     String serviceData;
     BroadcastReceiver receiver;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater , ViewGroup container ,
@@ -42,6 +46,10 @@ public class UserInfoView extends Fragment implements View.OnClickListener{
         TabLayout tabs=view.findViewById(R.id.tabs_userinfo);
 
         actList.add(getActivity());
+
+        //레이아웃
+        linearLayout=(LinearLayout)view.findViewById(R.id.user_category);
+
         //탭 아이콘
         tabs.addTab(tabs.newTab().setIcon(R.drawable.ic_apps_black_24dp));
         tabs.addTab(tabs.newTab().setIcon(R.drawable.ic_location_on2_black_24dp));
@@ -93,4 +101,5 @@ public class UserInfoView extends Fragment implements View.OnClickListener{
         }
 
     }
+
 }

@@ -7,7 +7,7 @@ public class DataModelUserSetting {
     private String user_name;
     private String mail;
     private String user_id;
-    private List<String> interest;
+    private List<String> category;
     private List<DataModelUserSetting> followers;
     private List<DataModelUserSetting> following;
 
@@ -43,18 +43,18 @@ public class DataModelUserSetting {
         this.user_id = user_id;
     }
 
-    public List<String> getInterest() {
-        return interest;
+    public List<String> getCategory() {
+        return category;
     }
 
-    public void setInterest(List<String> interest) {
-        this.interest = interest;
+    public void setCategory(List<String> category) {
+        this.category = category;
     }
+
 
     public List<DataModelUserSetting> getFollowers() {
         return followers;
     }
-
     public void setFollowers(List<DataModelUserSetting> followers) {
         this.followers = followers;
     }
@@ -74,7 +74,7 @@ public class DataModelUserSetting {
                 ", user_name='" + user_name + '\'' +
                 ", mail='" + mail + '\'' +
                 ", user_id='" + user_id + '\'' +
-                ", interest=" + interest +
+                ", category=" + category +
                 ", followers=" + followers +
                 ", following=" + following +
                 '}';
