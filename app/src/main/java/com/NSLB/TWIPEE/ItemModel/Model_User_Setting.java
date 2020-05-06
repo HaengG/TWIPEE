@@ -2,14 +2,14 @@ package com.NSLB.TWIPEE.ItemModel;
 
 import java.util.List;
 
-public class DataModelUserSetting {
+public class Model_User_Setting {
     private String profile_photo;
     private String user_name;
     private String mail;
     private String user_id;
     private List<String> category;
-    private List<DataModelUserSetting> followers;
-    private List<DataModelUserSetting> following;
+    private List<Model_User_Setting> followers;
+    private List<Model_User_Setting> following;
 
     public String getProfile_photo() {
         return profile_photo;
@@ -52,24 +52,24 @@ public class DataModelUserSetting {
     }
 
 
-    public List<DataModelUserSetting> getFollowers() {
+    public List<Model_User_Setting> getFollowers() {
         return followers;
     }
-    public void setFollowers(List<DataModelUserSetting> followers) {
+    public void setFollowers(List<Model_User_Setting> followers) {
         this.followers = followers;
     }
 
-    public List<DataModelUserSetting> getFollowing() {
+    public List<Model_User_Setting> getFollowing() {
         return following;
     }
 
-    public void setFollowing(List<DataModelUserSetting> following) {
+    public void setFollowing(List<Model_User_Setting> following) {
         this.following = following;
     }
 
     @Override
     public String toString() {
-        return "DataModelUserSetting{" +
+        return "Model_User_Setting{" +
                 "profile_photo='" + profile_photo + '\'' +
                 ", user_name='" + user_name + '\'' +
                 ", mail='" + mail + '\'' +

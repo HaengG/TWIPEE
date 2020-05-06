@@ -8,9 +8,8 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.NSLB.TWIPEE.ItemModel.DataModelUserSetting;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.NSLB.TWIPEE.ItemModel.Model_User_Setting;
+
 import java.util.ArrayList;
 
 public class Login_category extends AppCompatActivity implements View.OnClickListener {
@@ -19,7 +18,7 @@ public class Login_category extends AppCompatActivity implements View.OnClickLis
     private TextView selected;
     private String show_category;
     private Button done;
-    public DataModelUserSetting dataModelUserSetting;
+    public Model_User_Setting modelUserSetting;
     public FirebaseMethodUserSettings firebaseMethodUserSettings;
 
     @Override
@@ -27,7 +26,7 @@ public class Login_category extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_interast);
         firebaseMethodUserSettings= new FirebaseMethodUserSettings();
-        dataModelUserSetting=new DataModelUserSetting();
+        modelUserSetting =new Model_User_Setting();
         selected = (TextView)findViewById(R.id.selected);
         done = (Button)findViewById(R.id.done);
         done.setOnClickListener(this);
@@ -46,14 +45,14 @@ public class Login_category extends AppCompatActivity implements View.OnClickLis
                 category.remove(btn.getText().toString());
                 show_category = category.toString();
                 selected.setText(show_category);
-                dataModelUserSetting.setCategory(category);
+                modelUserSetting.setCategory(category);
             }
             else {
                 ToggleButton btn = (ToggleButton) findViewById(view.getId());
                 category.add(btn.getText().toString());
                 show_category = category.toString();
                 selected.setText(show_category);
-                dataModelUserSetting.setCategory(category);
+                modelUserSetting.setCategory(category);
             }
     }
 

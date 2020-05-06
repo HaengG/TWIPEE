@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.NSLB.TWIPEE.ItemModel.DataModelUser;
-import com.NSLB.TWIPEE.ItemModel.DataModelUserSetting;
+import com.NSLB.TWIPEE.ItemModel.Model_User_Setting;
 import com.NSLB.TWIPEE.ItemModel.Model_SNS_Post;
 import com.NSLB.TWIPEE.ItemModel.Model_SNS_Post_Comment;
 import com.NSLB.TWIPEE.R;
@@ -88,7 +88,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<CommentRecycler
         ImageView like;
         boolean likeByCurrentUser;
 
-        DataModelUserSetting DMUserSetting = new DataModelUserSetting();
+        Model_User_Setting DMUserSetting = new Model_User_Setting();
         DataModelUser DMUser = new DataModelUser();
         //DataModelLike DMLike = new DataModelLike();
         Model_SNS_Post DMSNS = new Model_SNS_Post();
