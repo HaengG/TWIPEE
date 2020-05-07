@@ -2,8 +2,6 @@ package com.NSLB.TWIPEE.Ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.NSLB.TWIPEE.ItemModel.DataModelUser;
-import com.NSLB.TWIPEE.ItemModel.DataModelUserSetting;
+import com.NSLB.TWIPEE.ItemModel.Model_User_Setting;
 import com.NSLB.TWIPEE.ItemModel.Model_SNS_Post;
 import com.NSLB.TWIPEE.R;
 import com.NSLB.TWIPEE.SNS.CommentActivity;
@@ -25,14 +23,8 @@ import com.NSLB.TWIPEE.SNS.LikeUserActivity;
 import com.NSLB.TWIPEE.SNS.SNSPostDetailActivity;
 import com.NSLB.TWIPEE.SNS.SNSPostViewPagerAdapter;
 import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
-import java.security.KeyStore;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -40,7 +32,6 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -297,7 +288,7 @@ public class SNSRecyclerAdapter extends RecyclerView.Adapter<SNSRecyclerAdapter.
         ImageView more, tripticonFill, tripticonEmpty, comment;
         boolean likeByCurrentUser;
 
-        DataModelUserSetting DMuserSetting = new DataModelUserSetting();
+        Model_User_Setting DMuserSetting = new Model_User_Setting();
         DataModelUser DMuser = new DataModelUser();
         //DataModelLike DMLike = new DataModelLike();
         Model_SNS_Post DMSNS = new Model_SNS_Post();

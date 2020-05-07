@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TWIPEE_TRIPTALK</string>
+
+
+    <string name="tab_text_1">SNS</string>
+    <string name="tab_text_2">TripTalk</string>
+    <string name="tab_text_3">NearFacility</string>
+    <string name="tab_text_4">Userinfo</string>
+
+    <string name="board_camera">Camera</string>
+    <string name="board_babycar">Babycar</string>
+    <string name="board_baggage">Baggage</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
