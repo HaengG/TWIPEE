@@ -70,12 +70,12 @@ public class SNSView extends Fragment implements View.OnClickListener{
 //        postFirebaseDatabase(true);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("SNS").limitToLast(4).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 int i = 0;
-                for(DataSnapshot item : dataSnapshot.child("SNS").getChildren()){
+                for(DataSnapshot item : dataSnapshot.getChildren()){
                     Postkey.add(item.getKey());
                     Postdata.add(item.getValue(Model_SNS_Post.class));
                     SNS_Post_list.put(Postkey.get(i),Postdata.get(i));

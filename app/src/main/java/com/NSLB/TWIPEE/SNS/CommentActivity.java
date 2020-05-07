@@ -27,6 +27,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -115,6 +117,8 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+
+
     public void postFirebaseDatabase(boolean add){
         mDatabase = FirebaseDatabase.getInstance().getReference();
         String commentkey = mDatabase.child("SNS_POST_COMMENT").child(Key).push().getKey();
@@ -145,6 +149,14 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
                 for(DataSnapshot item : dataSnapshot.child("SNS_POST_COMMENT").child(Key).getChildren()){
                     Postcommentdata.add(item.getValue(Model_SNS_Post_Comment.class));
                 }
+                Postcommentdata.sort(new Comparator<Model_SNS_Post_Comment>() {
+                    @Override
+                    public int compare(Model_SNS_Post_Comment o1, Model_SNS_Post_Comment o2) {
+                        String date1 = o1.getCreatedDate();
+                        String date2 = o2.getCreatedDate();
+                        return ((Comparable<String>) date2).compareTo(date1);
+                    }
+                });
                 CommentRecyclerView.setHasFixedSize(true);
                 CommentRecyclerView.setLayoutManager(new LinearLayoutManager(context));
                 adapter = new CommentRecyclerAdapter(context, Postcommentdata);
@@ -155,6 +167,5 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
                 Toast.makeText(context, "예상치 못한 오류가 발생했습니다. 다시 실행해주세요.", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

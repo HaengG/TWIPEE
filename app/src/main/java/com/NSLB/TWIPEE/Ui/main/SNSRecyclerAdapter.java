@@ -64,21 +64,22 @@ public class SNSRecyclerAdapter extends RecyclerView.Adapter<SNSRecyclerAdapter.
     private LinkedHashMap<String, Model_SNS_Post> real_SNS_Post_list = new LinkedHashMap<String, Model_SNS_Post>();
     private ArrayList<String> Keylist = new ArrayList<>();
     private ArrayList<Model_SNS_Post> list = new ArrayList<>();
+    private ArrayList<Model_SNS_Post> test = new ArrayList<>();
 
     private int temp = 0;
 
     public static List<String> sortByValue(final Map<String, Model_SNS_Post> map) {
-        List<String> lista = new ArrayList<String>();
-        lista.addAll(map.keySet());
+        List<String> sortlist = new ArrayList<String>();
+        sortlist.addAll(map.keySet());
 
-        Collections.sort(lista, new Comparator<String>() {
+        Collections.sort(sortlist, new Comparator<String>() {
             public int compare(String o1, String o2) {
                 String v1 = map.get(o1).getCreatedDate();
                 String v2 = map.get(o2).getCreatedDate();
-                return ((Comparable<String>) v1).compareTo(v2);
+                return ((Comparable<String>) v2).compareTo(v1);
             }
         });
-        return lista;
+        return sortlist;
     }
 
 
@@ -95,8 +96,20 @@ public class SNSRecyclerAdapter extends RecyclerView.Adapter<SNSRecyclerAdapter.
             real_SNS_Post_list.put(key, SNS_Post_list.get(key));
         }
         for(Map.Entry<String,Model_SNS_Post> entry : real_SNS_Post_list.entrySet()){
-            list.add(entry.getValue());
+//            for(int i = 1; i<entry.getValue().getCategory().size();i++) {
+//                if(((Comparable<String>)entry.getValue().getCategory().get("Category"+i)).compareTo("B")==0) {
+                    list.add(entry.getValue());
+//                }
+//            }
         }
+        for(Model_SNS_Post result : list) {
+            for(int i = 1;i<result.getCategory().size();i++){
+                String categorykey = "category"+i;
+                if(result.getCategory().get(categorykey).compareTo("A") == 0)
+                    test.add(result);
+            }
+        }
+
     }
 
 
@@ -116,11 +129,11 @@ public class SNSRecyclerAdapter extends RecyclerView.Adapter<SNSRecyclerAdapter.
         //데이터 불러와서 아이템 셋팅
 
         //유저 이름
-        holder.PublisherID.setText(list.get(itemposition).getPublisherID());
+        holder.PublisherID.setText(test.get(itemposition).getPublisherID());
         //게시글 내용 불러오기
-        holder.Body.setText(list.get(itemposition).getBody());
+        holder.Body.setText(test.get(itemposition).getBody());
         //올린 시간
-        holder.timeDetla.setText(list.get(itemposition).getCreatedDate());
+        holder.timeDetla.setText(test.get(itemposition).getCreatedDate());
 //        //여행 타입
 //        holder.tripType.setText(list.get(itemposition).getType());
 //        //여행 기간
@@ -260,7 +273,7 @@ public class SNSRecyclerAdapter extends RecyclerView.Adapter<SNSRecyclerAdapter.
             @Override
             public void onClick(View v) {
                 intent = new Intent(v.getContext(), SNSPostDetailActivity.class);
-                intent.putExtra("PostInfo",list);
+                intent.putExtra("PostInfo",test);
                 intent.putExtra("position",position);
                 mContext.startActivity(intent);
             }
@@ -270,7 +283,7 @@ public class SNSRecyclerAdapter extends RecyclerView.Adapter<SNSRecyclerAdapter.
     // 몇개의 데이터를 리스트로 뿌려줘야하는지 반드시 정의해줘야한다
     @Override
     public int getItemCount() {
-        return list.size(); // RecyclerView의 size return
+        return test.size(); // RecyclerView의 size return
     }
 
     public class Holder extends RecyclerView.ViewHolder {
