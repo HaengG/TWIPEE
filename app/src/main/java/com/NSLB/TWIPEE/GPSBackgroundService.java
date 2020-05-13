@@ -38,7 +38,7 @@ public class GPSBackgroundService extends Service {
     public String latitude_list = null;
     public String longitude_str = null;
     public String latitude_str = null;
-    final static String MY_ACTION = "MY_ACTION";
+    public final static String MY_ACTION = "MY_ACTION";
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
